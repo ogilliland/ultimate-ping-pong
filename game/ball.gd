@@ -4,6 +4,8 @@ const MAX_NORMAL: float = 100.0
 const MAX_TANGENT: float = 1000.0
 const DEFAULT_SPEED: float = 400.0
 
+var explosion = preload("res://effects/explosion.tscn")
+
 var vel_dir: Vector2
 var speed: float
 var spin: float
@@ -15,7 +17,7 @@ func init() -> void:
 	vel_dir = Vector2(-1, rand_range(-1, 1)).normalized()
 	speed = DEFAULT_SPEED
 	spin = 0.0
-	get_node("Circle").rotation_degrees = 0.0
+	get_node("Sprite").rotation_degrees = 0.0
 
 func _ready() -> void:
 	default_pos = position
@@ -23,7 +25,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var a = spin * 0.0001
-	get_node("Circle").rotation_degrees += spin
+	get_node("Sprite").rotation_degrees += spin
 	vel_dir = vel_dir.rotated(a)
 	
 	var collision = move_and_collide(vel_dir * speed * delta)
@@ -51,6 +53,10 @@ func _physics_process(delta: float) -> void:
 		position += r * speed_scale
 		
 		vel_dir = r.normalized()
+		
+		# add collision effect
+		var magnitude = clamp((speed - 500.0)/1000.0, 0.0, 1.0)
+		get_node("../Effects").explode(collision.position, collision.normal, magnitude)
 	
 	# TO DO - raycast if ball is moving fast enough to skip through colliders
 #	var space_state = get_world_2d().direct_space_state
