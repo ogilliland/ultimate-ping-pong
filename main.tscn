@@ -15,7 +15,7 @@ use_filter = true
 font_data = ExtResource( 5 )
 
 [sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, -1.0, 0, 1, Vector2( 1, 0 ), -1.0, 0.0, 1, 0 ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 680, 30 )
