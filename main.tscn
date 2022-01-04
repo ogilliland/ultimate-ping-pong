@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ball.tscn" type="PackedScene" id=3]
+[ext_resource path="res://goal.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 680, 20 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 60, 360 )
+
+[node name="Enemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1220, 360 )
+
+[node name="Ball" parent="." instance=ExtResource( 3 )]
+position = Vector2( 640, 360 )
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 640, -20 )
+shape = SubResource( 2 )
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 640, 740 )
+shape = SubResource( 2 )
+
+[node name="GoalLeft" parent="." instance=ExtResource( 4 )]
+position = Vector2( -20, 360 )
+
+[node name="GoalRight" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1300, 360 )
