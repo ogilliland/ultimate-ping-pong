@@ -4,9 +4,15 @@ var last_height: float
 var target_height: float
 var speed: float
 
+var default_pos: Vector2
+
+func init() -> void:
+	position = default_pos
+
 func _ready() -> void:
 	last_height = position.y
 	target_height = position.y
+	default_pos = position
 
 func _physics_process(delta: float) -> void:
 	var diff = position.y - last_height
