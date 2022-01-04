@@ -9,7 +9,7 @@ func set_color(new: Color) -> void:
 	color = new
 	update()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var parent = get_parent()
 	var ratio = (1.0 - parent.age/parent.lifetime)
 	length_scale = clamp(ratio, 0, 1)

@@ -22,8 +22,8 @@ func init() -> void:
 func _ready() -> void:
 	init()
 
-func _physics_process(delta: float) -> void:
-	num_points = MAX_POINTS * clamp(get_speed() * 0.001, 0, 1)
+func _physics_process(_delta: float) -> void:
+	num_points = floor(MAX_POINTS * clamp(get_speed() * 0.001, 0.0, 1.0))
 	
 	add_point(get_target_pos(), 0)
 	while(get_point_count() > num_points):

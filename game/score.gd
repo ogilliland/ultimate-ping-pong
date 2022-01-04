@@ -19,7 +19,7 @@ func new_match() -> void:
 #	get_node("../Player").init()
 #	get_node("../Enemy").init()
 
-func _on_goal(by: int, against: int) -> void:
+func _on_goal(by: int, _against: int) -> void:
 	match by:
 		1:
 			score_p1 += 1
@@ -29,9 +29,9 @@ func _on_goal(by: int, against: int) -> void:
 	new_match()
 
 func update_score() -> void:
-	var p11 = floor(score_p1 / 10)
+	var p11 = floor(score_p1 / 10.0)
 	var p12 = score_p1 % 10
-	var p21 = floor(score_p2 / 10)
+	var p21 = floor(score_p2 / 10.0)
 	var p22 = score_p2 % 10
 	get_node("HBoxContainer/P1Digit1").text = str(p11)
 	get_node("HBoxContainer/P1Digit2").text = str(p12)

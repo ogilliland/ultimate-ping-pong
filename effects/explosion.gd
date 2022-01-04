@@ -27,14 +27,14 @@ func begin() -> void:
 		child.queue_free()
 	
 	var num_fragments = 3 + 7 * magnitude
-	for i in range(num_fragments):
+	for _i in range(num_fragments):
 		var instance = fragment.instance()
 		instance.speed = rand_range(MIN_SPEED * (0.5 + 0.5 * magnitude), MAX_SPEED * (0.5 + 0.5 * magnitude))
 		instance.lifetime = rand_range(MIN_LIFETIME * (0.5 + 0.5 * magnitude), MAX_LIFETIME * (0.5 + 0.5 * magnitude))
 		instance.rotation_degrees = rand_range(-90, 90)
 		fragments.add_child(instance)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	update_splat()
 	frame += 1
 
