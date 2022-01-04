@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal collision(magnitude)
+
 const MAX_NORMAL: float = 100.0
 const MAX_TANGENT: float = 1000.0
 const DEFAULT_SPEED: float = 400.0
@@ -57,6 +59,8 @@ func _physics_process(delta: float) -> void:
 		# add collision effect
 		var magnitude = clamp((speed - 500.0)/1000.0, 0.0, 1.0)
 		get_node("../Effects").explode(collision.position, collision.normal, magnitude)
+		
+		emit_signal("collision", clamp((speed - 500.0)/4000.0, 0.0, 0.25))
 	
 	# TO DO - raycast if ball is moving fast enough to skip through colliders
 #	var space_state = get_world_2d().direct_space_state
