@@ -11,8 +11,8 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 script = ExtResource( 1 )
-color = Color( 1, 0.466667, 0.466667, 1 )
-highlight = Color( 0.945098, 0.94902, 0.854902, 1 )
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
+highlight = Color( 0.376471, 0.376471, 0.376471, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://game/score.tscn" type="PackedScene" id=5]
 [ext_resource path="res://effects/trail.tscn" type="PackedScene" id=6]
 [ext_resource path="res://effects/effects_manager.gd" type="Script" id=7]
+[ext_resource path="res://effects/color_correction.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 680, 30 )
@@ -24,6 +25,7 @@ __meta__ = {
 script = ExtResource( 7 )
 
 [node name="BallTrail" parent="Effects" instance=ExtResource( 6 )]
+default_color = Color( 0.376471, 0.376471, 0.376471, 1 )
 target = NodePath("../../Ball")
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
@@ -42,7 +44,7 @@ margin_left = -40.0
 margin_top = -40.0
 margin_right = 1320.0
 margin_bottom = 20.0
-color = Color( 1, 0.466667, 0.466667, 1 )
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -52,7 +54,7 @@ margin_left = -40.0
 margin_top = 700.0
 margin_right = 1320.0
 margin_bottom = 760.0
-color = Color( 1, 0.466667, 0.466667, 1 )
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -73,3 +75,5 @@ position = Vector2( 1300, 360 )
 this_player = 2
 other_player = 1
 normal = Vector2( -1, 0 )
+
+[node name="ColorCorrection" parent="." instance=ExtResource( 8 )]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://effects/color_correction.gd" type="Script" id=1]
+[ext_resource path="res://effects/color_correction.gdshader" type="Shader" id=2]
+[ext_resource path="res://assets/polyducks-ayy4.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 2 )
+shader_param/palette = ExtResource( 3 )
+
+[node name="ColorCorrection" type="ColorRect"]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

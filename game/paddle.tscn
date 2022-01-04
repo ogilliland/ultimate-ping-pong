@@ -16,7 +16,7 @@ margin_top = -60.0
 margin_right = 10.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 20, 120 )
-color = Color( 1, 0.466667, 0.466667, 1 )
+color = Color( 0.12549, 0.12549, 0.12549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
