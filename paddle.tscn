@@ -21,7 +21,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StaticBody" type="StaticBody2D" parent="Transform"]
+[node name="StaticBody" type="StaticBody2D" parent="Transform" groups=["paddle"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Transform/StaticBody"]
 shape = SubResource( 1 )

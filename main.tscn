@@ -6,7 +6,7 @@
 [ext_resource path="res://goal.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 680, 20 )
+extents = Vector2( 680, 30 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -26,12 +26,32 @@ position = Vector2( 640, 360 )
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
+[node name="TopColor" type="ColorRect" parent="Walls"]
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 1320.0
+margin_bottom = 20.0
+color = Color( 1, 0.466667, 0.466667, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomColor" type="ColorRect" parent="Walls"]
+margin_left = -40.0
+margin_top = 700.0
+margin_right = 1320.0
+margin_bottom = 760.0
+color = Color( 1, 0.466667, 0.466667, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Top" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 640, -20 )
+position = Vector2( 640, -10 )
 shape = SubResource( 2 )
 
 [node name="Bottom" type="CollisionShape2D" parent="Walls"]
-position = Vector2( 640, 740 )
+position = Vector2( 640, 730 )
 shape = SubResource( 2 )
 
 [node name="GoalLeft" parent="." instance=ExtResource( 4 )]
