@@ -2,25 +2,23 @@ extends KinematicBody2D
 
 const MAX_NORMAL = 100.0
 const MAX_TANGENT = 1000.0
-const INIT_SPEED = 200.0
 
-var vel_dir: Vector2 = Vector2(-1, 0)
-var vel_speed: float = INIT_SPEED
+var vel_dir: Vector2 = Vector2(-1, -0.5).normalized()
+var vel_speed: float = 400.0
 var spin: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	var a = spin * 0.0001
 	get_node("Sprite").rotation_degrees += spin
-	vel_dir = Vector2(
-		vel_dir.x * cos(a) - vel_dir.y * sin(a),
-		vel_dir.x * sin(a) + vel_dir.y * cos(a)
-	)
+	vel_dir = vel_dir.rotated(a)
 	
 	var collision = move_and_collide(vel_dir * vel_speed * delta)
 	if collision:
 		var speed = 0
+		var bonus_speed = 0
 		if collision.collider.is_in_group("paddle"):
 			speed = collision.collider.get_node("../../").speed
+			bonus_speed = 25.0
 		
 		var speed_normal = Vector2(0, speed).dot(collision.normal)
 		speed_normal = clamp(speed_normal, -MAX_NORMAL, MAX_NORMAL)
@@ -29,8 +27,8 @@ func _physics_process(delta: float) -> void:
 		
 		spin += speed_tangent * 0.025
 		
-		var speed_scale = (vel_speed + speed_normal) / vel_speed
-		vel_speed += speed_normal
+		var speed_scale = (vel_speed + speed_normal + bonus_speed) / vel_speed
+		vel_speed += speed_normal + bonus_speed
 		
 		var n = collision.normal
 		var d = collision.remainder
