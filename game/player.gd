@@ -1,4 +1,4 @@
-extends "res://paddle.gd"
+extends "res://game/paddle.gd"
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

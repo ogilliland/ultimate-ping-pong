@@ -5,7 +5,7 @@ const MAX_TANGENT: float = 1000.0
 const DEFAULT_SPEED: float = 400.0
 
 var vel_dir: Vector2
-var vel_speed: float
+var speed: float
 var spin: float
 
 var default_pos: Vector2
@@ -13,9 +13,9 @@ var default_pos: Vector2
 func init() -> void:
 	position = default_pos
 	vel_dir = Vector2(-1, rand_range(-1, 1)).normalized()
-	vel_speed = DEFAULT_SPEED
+	speed = DEFAULT_SPEED
 	spin = 0.0
-	get_node("Sprite").rotation_degrees = 0.0
+	get_node("Circle").rotation_degrees = 0.0
 
 func _ready() -> void:
 	default_pos = position
@@ -23,26 +23,26 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var a = spin * 0.0001
-	get_node("Sprite").rotation_degrees += spin
+	get_node("Circle").rotation_degrees += spin
 	vel_dir = vel_dir.rotated(a)
 	
-	var collision = move_and_collide(vel_dir * vel_speed * delta)
+	var collision = move_and_collide(vel_dir * speed * delta)
 	if collision:
-		var speed = 0
+		var collider_speed = 0
 		var bonus_speed = 0
 		if collision.collider.is_in_group("paddle"):
-			speed = collision.collider.get_node("../../").speed
+			collider_speed = collision.collider.get_node("../../").speed
 			bonus_speed = 25.0
 		
-		var speed_normal = Vector2(0, speed).dot(collision.normal)
+		var speed_normal = Vector2(0, collider_speed).dot(collision.normal)
 		speed_normal = clamp(speed_normal, -MAX_NORMAL, MAX_NORMAL)
-		var speed_tangent = Vector2(-speed, 0).dot(collision.normal)
+		var speed_tangent = Vector2(-collider_speed, 0).dot(collision.normal)
 		speed_tangent = clamp(speed_tangent, -MAX_TANGENT, MAX_TANGENT)
 		
 		spin += speed_tangent * 0.025
 		
-		var speed_scale = (vel_speed + speed_normal + bonus_speed) / vel_speed
-		vel_speed += speed_normal + bonus_speed
+		var speed_scale = (speed + speed_normal + bonus_speed) / speed
+		speed += speed_normal + bonus_speed
 		
 		var n = collision.normal
 		var d = collision.remainder
